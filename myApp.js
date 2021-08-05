@@ -12,12 +12,12 @@ app.get('/', function(req, res) {
 app.get('/json', function(req, res) {
   res.json({ message: process.env.MESSAGE_STYLE === 'uppercase' ? 'HELLO JSON' : 'Hello json' });
 });
-
-
-
-
-
-
+app.get('/now', function(req, res, next) {
+  req.time = new Date().toString();
+  next();
+}, function(req, res) {
+  res.send({ time: req.time });
+});
 
 
 
